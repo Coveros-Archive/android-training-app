@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "318510870027",
+    "firebase_url": "https://trainingapp-3af3f.firebaseio.com",
+    "project_id": "trainingapp-3af3f",
+    "storage_bucket": "trainingapp-3af3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318510870027:android:2f09faa83d6f32a1",
+        "android_client_info": {
+          "package_name": "coveros.com.trainingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318510870027-b21bshj3rns1akqufuuimghhilosl22l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "coveros.com.trainingapp",
+            "certificate_hash": "581432992e6e54c62b77ac93feb57b839228eeea"
+          }
+        },
+        {
+          "client_id": "318510870027-8jcn3v38bemc4qaoflph60uu07q9cbq6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB58HZXvdGHCFS7cgx1ZEWDklduvIZTzMU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318510870027-8jcn3v38bemc4qaoflph60uu07q9cbq6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
