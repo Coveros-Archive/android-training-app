@@ -1,15 +1,25 @@
 package coveros.com.trainingapp;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
 
+    private static final String TAG = "HELLO";
     private EditText email;
     private EditText password;
     private Button submit;
@@ -17,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final String USERNAME = "Admin";
     private final String PW = "Admin";
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,26 +53,25 @@ public class MainActivity extends AppCompatActivity {
                 String emailInput = email.getText().toString().trim();
                 String passwordInput = password.getText().toString().trim();
 
-                if (emailInput.isEmpty() || passwordInput.isEmpty()) {
-                    Toast.makeText(getApplicationContext(),
-                            "Username or Password are empty", Toast.LENGTH_LONG)
-                            .show();
-                }
-                else if(!emailInput.equals(USERNAME) || !passwordInput.equals(PW)){
-                    Toast.makeText(getApplicationContext(),
-                            "Username or Password are incorrect", Toast.LENGTH_LONG)
-                            .show();
-                }
-                else {
-                    if(emailInput.equals(USERNAME) && passwordInput.equals(PW)){
-                        //GO TO HOMEPAGE
-                        Toast.makeText(getApplicationContext(),
-                                "Welcome Admin!", Toast.LENGTH_LONG)
-                                .show();
-                        //TODO add homepage
+                mAuth.createUserWithEmailAndPassword(emailInput, passwordInput)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "createUserWithEmail:success");
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    updateUI(user);
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                    updateUI(null);
+                                }
 
-                    }
-                }
+                            }
+                        });
             }
         });
 
@@ -76,4 +87,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    private  void updateUI(FirebaseUser currentUser) {
+        if(currentUser != null){
+            //TODO
+            Intent homePage = new Intent(this,HomeActivity.class);
+            startActivity(homePage);
+        }
+    }
+
 }
