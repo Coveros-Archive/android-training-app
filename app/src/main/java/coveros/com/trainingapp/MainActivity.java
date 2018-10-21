@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Login button click event
-
-        submit.setOnClickListener(new View.OnClickListener() {
+        mAuth = FirebaseAuth.getInstance();
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String emailInput = email.getText().toString().trim();
@@ -77,11 +77,31 @@ public class MainActivity extends AppCompatActivity {
 
         //Register button click event
 
-        register.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go to register page
-                //TODO implement register page
+                String emailInput = email.getText().toString().trim();
+                String passwordInput = password.getText().toString().trim();
+
+                mAuth.signInWithEmailAndPassword(emailInput, passwordInput)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    updateUI(user);
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                    updateUI(null);
+                                }
+
+                            }
+                        });
             }
         });
 
@@ -93,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
+
     }
 
     private  void updateUI(FirebaseUser currentUser) {
@@ -102,5 +123,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(homePage);
         }
     }
+
 
 }
