@@ -19,14 +19,11 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final String TAG = "HELLO";
+    private static final String TAG = "SIGNIN";
     private EditText email;
     private EditText password;
     private Button submit;
     private Button register;
-
-    private final String USERNAME = "Admin";
-    private final String PW = "Admin";
 
     private FirebaseAuth mAuth;
 
