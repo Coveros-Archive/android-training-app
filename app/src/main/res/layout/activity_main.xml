@@ -68,6 +68,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/btn_login"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
