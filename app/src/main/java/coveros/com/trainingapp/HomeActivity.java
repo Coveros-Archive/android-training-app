@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-
+    private TextView welcomeText;
 
 
     @Override
@@ -23,6 +24,12 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         mAuth = FirebaseAuth.getInstance();
+        welcomeText = findViewById(R.id.welcome_text);
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null){
+            String welcome = user.getEmail().toString();
+            welcomeText.setText("Welcome "+welcome);
+        }
 
 
     }
