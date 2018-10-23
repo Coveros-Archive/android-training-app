@@ -43,14 +43,18 @@ public class HomeActivity extends AppCompatActivity {
         trainingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO add button event
+                //Go to training page
+                Intent test = new Intent(HomeActivity.this, TrainingPage.class);
+                startActivity(test);
             }
         });
 
         testingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO add button event
+                //Go to testing page
+                Intent train = new Intent(HomeActivity.this, TestingPage.class);
+                startActivity(train);
             }
         });
     }
