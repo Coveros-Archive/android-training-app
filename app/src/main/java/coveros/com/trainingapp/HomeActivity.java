@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,6 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView welcomeText;
+    private Button trainingButton;
+    private Button testingButton;
 
 
     @Override
@@ -23,6 +27,10 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        trainingButton = findViewById(R.id.trainingButton);
+        testingButton = findViewById(R.id.testingButton);
+
         mAuth = FirebaseAuth.getInstance();
         welcomeText = findViewById(R.id.welcome_text);
         FirebaseUser user = mAuth.getCurrentUser();
@@ -32,6 +40,19 @@ public class HomeActivity extends AppCompatActivity {
         }
 
 
+        trainingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO add button event
+            }
+        });
+
+        testingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO add button event
+            }
+        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
