@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -37,6 +38,13 @@ public class HomeActivity extends AppCompatActivity {
         if(user != null){
             String welcome = user.getEmail().toString();
             welcomeText.setText("Welcome "+welcome);
+
+            //TODO updates display name to provided string if you want to add name fields
+//            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+//                    .setDisplayName("Arya").build();
+//
+//            user.updateProfile(profileUpdates);
+//            String welcome = user.getDisplayName();
         }
 
 
