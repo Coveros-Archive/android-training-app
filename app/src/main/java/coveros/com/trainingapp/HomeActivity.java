@@ -6,14 +6,19 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView welcomeText;
+    private Button trainingButton;
+    private Button testingButton;
 
 
     @Override
@@ -23,15 +28,43 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        trainingButton = findViewById(R.id.trainingButton);
+        testingButton = findViewById(R.id.testingButton);
+
         mAuth = FirebaseAuth.getInstance();
         welcomeText = findViewById(R.id.welcome_text);
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
             String welcome = user.getEmail().toString();
             welcomeText.setText("Welcome "+welcome);
+
+            //TODO updates display name to provided string if you want to add name fields
+//            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+//                    .setDisplayName("Arya").build();
+//
+//            user.updateProfile(profileUpdates);
+//            String welcome = user.getDisplayName();
         }
 
 
+        trainingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Go to training page
+                Intent test = new Intent(HomeActivity.this, TrainingPage.class);
+                startActivity(test);
+            }
+        });
+
+        testingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Go to testing page
+                Intent train = new Intent(HomeActivity.this, TestingPage.class);
+                startActivity(train);
+            }
+        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

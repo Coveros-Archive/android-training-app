@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -133,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
     private  void updateUI(FirebaseUser currentUser) {
         if(currentUser != null){
-            //TODO
             Intent homePage = new Intent(this,HomeActivity.class);
             startActivity(homePage);
         }

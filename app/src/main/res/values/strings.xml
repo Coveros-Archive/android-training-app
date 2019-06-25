@@ -2,6 +2,6 @@
     <string name="app_name">TrainingApp</string>
     <string name="hint_password">Enter Password</string>
     <string name="hint_account">Enter Email</string>
-    <string name="btn_login">Submit</string>
+    <string name="btn_login">Login</string>
     <string name="btn_link_to_register">Register</string>
 </resources>
